@@ -1,13 +1,13 @@
 "use client";
 
 import { Navbar } from "@/components/Navbar";
-import { Wallet } from "@/components/Wallet";
+import { WebWallet } from "@/components/Wallet";
 
 export default function Home() {
   return (
-    <div className="bg-gradient-to-b from-gray-900 via-gray-800 to-black h-screen w-full">
+    <div className="bg-gradient-to-b from-gray-900 via-gray-800 to-black h-screen overflow-auto w-full">
       <Navbar />
-      <Wallet />
+      <WebWallet />
     </div>
   );
 }
