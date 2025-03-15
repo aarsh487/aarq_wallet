@@ -106,13 +106,13 @@ export const WebWallet = () => {
   };
 
   return (
-    <div>
+    <div className="">
       {wallets.length === 0 && (
-        <div>
+        <div className="mt-40">
           {pathTypes.length === 0 && (
-            <div className="flex justify-center items-center h-screen">
+            <div className="flex justify-center items-center">
               <div className="">
-                <h1 className="my-8 text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-300 to-gray-500 text-center tracking-wide">
+                <h1 className="mb-8 text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-300 to-gray-500 text-center tracking-wide">
                   Pick your chain, Forge your path
                 </h1>
                 <div className="flex gap-4 justify-center items-center">
@@ -134,7 +134,7 @@ export const WebWallet = () => {
           )}
 
           {pathTypes.length !== 0 && (
-            <div className="flex justify-center items-center h-screen">
+            <div className="flex justify-center items-center">
               <div className="space-y-20">
                 <h1 className="mb-2 text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-300 to-gray-500 text-center tracking-wide">
                   Secure Seed Phrase
@@ -167,8 +167,8 @@ export const WebWallet = () => {
       )}
 
       {wallets.length > 0 && (
-        <div>
-          <div className="absolute top-12 right-20 flex gap-4">
+        <div className="mt-10">
+          <div className="flex gap-4 justify-center items-center">
             <button
               className="px-6 py-3 rounded-lg cursor-pointer bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition"
               onClick={handleAddWallet}
@@ -182,7 +182,7 @@ export const WebWallet = () => {
               Show Mneumonic
             </button>
           </div>
-          <div className="p-40">
+          <div className="px-40 mt-20">
             <h2 className="text-3xl font-bold mb-4">Your Wallets</h2>
             <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
               {wallets.map((wallet, index) => (
