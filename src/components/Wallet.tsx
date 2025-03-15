@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import nacl from "tweetnacl";
 import bs58 from "bs58";
 import { HDNodeWallet, Wallet } from "ethers";
+import { Eye, EyeOff } from "lucide-react";
 
 interface WalletType {
   publicKey: string;
@@ -17,10 +18,11 @@ export const WebWallet = () => {
   const [mneumonicWords, setMneumonicWords] = useState<string[]>(
     Array(12).fill(" ")
   );
-  const [pathTypes, setPathTypes] = useState<string[]>([]);
-  const [mneumonic, setMneumonic] = useState("");
-  const [wallets, setWallets] = useState<WalletType[]>([]);
-  const [showMnemonic, setShowMnemonic] = useState(false);
+  const [ pathTypes, setPathTypes ] = useState<string[]>([]);
+  const [ mneumonic, setMneumonic ] = useState("");
+  const [ wallets, setWallets ] = useState<WalletType[]>([]);
+  const [ showMnemonic, setShowMnemonic ] = useState(false);
+  const [showPrivateKey, setShowPrivateKey ] = useState(false);
 
   const createWallet = (
     pathTypes: string,
@@ -60,7 +62,7 @@ export const WebWallet = () => {
         path,
       };
     } catch (error) {
-      console.log("server error");
+      console.log("server error", error);
       return null;
     }
   };
@@ -84,8 +86,11 @@ export const WebWallet = () => {
   const handleGenerateWallet = async () => {
     let mn = mneumonic.trim();
     if (mn) {
-      console.log(mneumonic);
-      if (!validateMnemonic(mn)) return;
+      console.log("mn",mneumonic);
+      if (!validateMnemonic(mn)) {
+        console.log("not valid")
+        return
+      };
     } else {
       mn = generateMnemonic();
     }
@@ -179,25 +184,26 @@ export const WebWallet = () => {
           </div>
           <div className="p-40">
             <h2 className="text-3xl font-bold mb-4">Your Wallets</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
               {wallets.map((wallet, index) => (
                 <div
                   key={index}
-                  className="p-4 bg-gray-800 rounded-lg border border-gray-700"
+                  className="relative p-8 bg-gray-800 rounded-lg border border-gray-700"
                 >
                   <h3 className="text-xl font-bold mb-2">Wallet {index + 1}</h3>
-                  <p>
-                    <strong>Public Key:</strong>{" "}
+                  <p className="mb-4">
+                    <strong>Public Key:</strong>{" "}<br />
                     <span className="break-all text-blue-400">
                       {wallet.publicKey}
                     </span>
                   </p>
-                  <p>
-                    <strong>Private Key:</strong>{" "}
+                  <p className="">
+                    <strong>Private Key:</strong>{" "}<br />
                     <span className="break-all text-red-400">
-                      {wallet.privateKey}
+                      {showPrivateKey ? wallet.privateKey : "*".repeat(wallet.mneumonic.length)}
                     </span>
                   </p>
+                  <button className="absolute cursor-pointer bottom-8 right-8" onClick={() => setShowPrivateKey(!showPrivateKey)}>{showPrivateKey ? <Eye size={20} /> : <EyeOff size={20} />}</button>
                 </div>
               ))}
             </div>
