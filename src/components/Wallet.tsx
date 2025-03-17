@@ -112,19 +112,19 @@ export const WebWallet = () => {
           {pathTypes.length === 0 && (
             <div className="flex justify-center items-center">
               <div className="">
-                <h1 className="mb-8 text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-300 to-gray-500 text-center tracking-wide">
+                <h1 className="mb-8 text-2xl md:text-4xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-300 to-gray-500 text-center tracking-wide">
                   Pick your chain, Forge your path
                 </h1>
                 <div className="flex gap-4 justify-center items-center">
                   <button
                     onClick={() => setPathTypes(["501"])}
-                    className="px-6 py-3 rounded-lg cursor-pointer bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition"
+                    className="px-4 py-2 md:py-3 md:px-6 rounded-lg cursor-pointer bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition"
                   >
                     Solana
                   </button>
                   <button
                     onClick={() => setPathTypes(["60"])}
-                    className="px-6 py-3 rounded-lg cursor-pointer bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition"
+                    className="px-4 py-2 md:py-3 md:px-6 rounded-lg cursor-pointer bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition"
                   >
                     Ethereum
                   </button>
@@ -182,24 +182,24 @@ export const WebWallet = () => {
               Show Mneumonic
             </button>
           </div>
-          <div className="px-40 mt-20">
-            <h2 className="text-3xl font-bold mb-4">Your Wallets</h2>
+          <div className="lg:px-40 md:px-20 px-4 mt-20">
+            <h2 className="lg:text-3xl text-2xl font-bold mb-4">Your Wallets</h2>
             <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
               {wallets.map((wallet, index) => (
                 <div
                   key={index}
                   className="relative p-8 bg-gray-800 rounded-lg border border-gray-700"
                 >
-                  <h3 className="text-xl font-bold mb-2">Wallet {index + 1}</h3>
+                  <h3 className="lg:text-xl text-lg font-bold mb-2">Wallet {index + 1}</h3>
                   <p className="mb-4">
-                    <strong>Public Key:</strong>{" "}<br />
-                    <span className="break-all text-blue-400">
+                    <strong className="lg:text-lg text-md">Public Key:</strong>{" "}<br />
+                    <span className="break-all text-blue-400 text-sm lg:text-lg">
                       {wallet.publicKey}
                     </span>
                   </p>
                   <p className="">
-                    <strong>Private Key:</strong>{" "}<br />
-                    <span className="break-all text-red-400">
+                    <strong className="lg:text-lg text-md">Private Key:</strong>{" "}<br />
+                    <span className="break-all text-red-400 lg:text-lg text-sm">
                       {showPrivateKey ? wallet.privateKey : "*".repeat(wallet.mneumonic.length)}
                     </span>
                   </p>
@@ -214,19 +214,19 @@ export const WebWallet = () => {
         {showMnemonic && (
           <div className="">
             <div className="fixed inset-0 flex justify-center items-center bg-black/20 backdrop-blur-xs  bg-opacity-50">
-              <div className="bg-gray-800 p-6 rounded-lg max-w-[600px] text-center relative">
+              <div className="bg-gray-800 p-6 rounded-lg lg:max-w-[600px] max-w-[400px] text-center relative">
                 <button
                   onClick={() => setShowMnemonic(false)}
                   className="absolute cursor-pointer top-3 right-4 text-gray-400 hover:text-white"
                 >
                   ✖
                 </button>
-                <h2 className="text-2xl font-bold mb-8">Your Mnemonic</h2>
+                <h2 className="lg:text-2xl text-xl font-bold mb-8">Your Mnemonic</h2>
                 <div className="flex flex-wrap justify-center gap-2 mb-6">
                   {mneumonicWords.map((word, index) => (
                     <span
                       key={index}
-                      className="px-10 py-2 bg-gray-700 rounded-md"
+                      className="lg:px-10 lg:py-2 px-2 py-1 bg-gray-700 rounded-md"
                     >
                       {word}
                     </span>
